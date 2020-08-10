@@ -1,0 +1,12 @@
+.block_avatar {
+    display: flex;
+    justify-content: center;
+        
+}
+
+.block_avatar img {
+
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
