@@ -1,7 +1,5 @@
-.block_avatar {
-    display: flex;
-    justify-content: center;
-        
+.block_avatar { 
+    display: inline-block;
 }
 
 .block_avatar img {
