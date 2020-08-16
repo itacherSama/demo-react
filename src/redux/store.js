@@ -1,10 +1,6 @@
-const CONST_ACTION_TYPES = {
-    'ADD_POST': 'ADD-POST',
-    'UPDATE_NEW_POST': 'UPDATE-NEW-POST',
-    'ADD_MESSAGE': 'ADD-MESSAGE',
-    'UPDATE_NEW_MESSAGE': 'UPDATE-NEW-MESSAGE',
-
-}
+import dialogsReducer from "./reducers/dialogs-reducer";
+import profileReducer from "./reducers/profile-reducer";
+import navbarReducer from "./reducers/navbar-reducer";
 
 let store = {
     _state: {
@@ -70,62 +66,12 @@ let store = {
 
 
     dispatch(action) {
-        if (action.type === CONST_ACTION_TYPES.ADD_POST) {
-            let newPost = {
-                id: 5,
-                message: this._state.profilePage.newTextForPost,
-                likesCount: 0
-            };
-            
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newTextForPost = '';
-            this._callSubscriber(this);
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.navbar = navbarReducer(this._state.navbar, action);
+        this._callSubscriber(this);
 
-        } else if (action.type === CONST_ACTION_TYPES.UPDATE_NEW_POST) {
-            this._state.profilePage.newTextForPost = action.newText;
-            this._callSubscriber(this);
-        } else if (action.type === CONST_ACTION_TYPES.ADD_MESSAGE) {
-            let newMessage = {
-                id: 6,
-                message: this._state.dialogsPage.newTextForMessage
-            }
-            this._state.dialogsPage.messages.push(newMessage);
-            this._callSubscriber(this);
-
-        } else if (action.type === CONST_ACTION_TYPES.UPDATE_NEW_MESSAGE) {
-            this._state.dialogsPage.newTextForMessage = action.message;
-            this._callSubscriber(this);
-
-        }
     }
 }
 
-export let AddPostActionCreator = () => {
-    return {
-        type: CONST_ACTION_TYPES.ADD_POST
-    };
-}
-
-export let updateTextPostActionCreator = (text) => {
-    return {
-        type: CONST_ACTION_TYPES.UPDATE_NEW_POST,
-        newText: text
-    }
-}
-
-export let addMessageActionCreator = () => {
-    return {
-        type: CONST_ACTION_TYPES.ADD_MESSAGE
-    }
-}
-
-export let updateMessageActionCreator = (newMessage) => {
-    return {
-        type: CONST_ACTION_TYPES.UPDATE_NEW_MESSAGE,
-        message: newMessage
-    }
-}
-
-
-window.store = store;
 export default store;
