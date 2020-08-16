@@ -11,12 +11,14 @@ const Dialogs = (props) => {
     let messagesElements = state.messages.map( m => <Message message={m.message} />);
 
     let addNewMessage = () => {
-        props.dispatch(addMessageActionCreator());
+        let action = addMessageActionCreator();
+        props.dispatch(action);
     }
 
     let updateTextMessage = (e) => {
         let newMessage = e.target.value;
-        props.dispatch(updateMessageActionCreator(newMessage));
+        let action = updateMessageActionCreator(newMessage);
+        props.dispatch(action);
     }
 
     return (

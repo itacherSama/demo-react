@@ -4,8 +4,7 @@ import s from './Navbar.module.css';
 import { NavLink } from 'react-router-dom';
 
 let Navbar = (props) => {
-
-    let linksItems = props.navbar.map((link) => {
+    let linksItems = props.sidebar.links.map((link) => {
         return (
             <div>
                 <NavLink
