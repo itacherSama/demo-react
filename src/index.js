@@ -6,21 +6,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-let rerenderEntireTree = (state) => {
+let rerenderEntireTree = (store) => {
     ReactDOM.render(
         <React.StrictMode>
 
-            <App state={state} dispatch={store.dispatch.bind(store)} />
+            <App store={store} />
 
         </React.StrictMode>,
         document.getElementById('root')
     );
 };
 
-rerenderEntireTree(store.getState());
+rerenderEntireTree(store);
 store.subscribe(() => {
-     let state = store.getState();
-    rerenderEntireTree(state);
+    rerenderEntireTree(store);
 });
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
