@@ -1,4 +1,4 @@
-const actionTypes = {
+const tionTypes = {
     FOLLOW: 'FOLLOW',
     UNFOLLOW: 'UNFOLLOW',
     SET_USERS: 'SET_USERS',
@@ -16,89 +16,89 @@ let initialState = {
     isFetching: true
 };
 
-const usersReducer = (state = initialState, action) => {
+const usersReducer = (state = initialState, tion) => {
 
-    switch (action.type) {
-        case actionTypes.FOLLOW:
+    switch (tion.type) {
+        case tionTypes.FOLLOW:
             return {
                 ...state,
                 users: state.users.map((u) => {
-                    if (u.id === action.userId) {
+                    if (u.id === tion.userId) {
                         return {...u, followed: true}
                     }
                     return u;
                 })
             }
-        case actionTypes.UNFOLLOW:
+        case tionTypes.UNFOLLOW:
             return {
                 ...state,
                 users: state.users.map((u) => {
-                    if (u.id === action.userId) {
+                    if (u.id === tion.userId) {
                         return {...u, followed: false}
                     }
                     return u;
                 })
             }
-        case actionTypes.SET_USERS:
+        case tionTypes.SET_USERS:
             return {
                 ...state,
-                users: [...action.users]
+                users: [...tion.users]
             }
-        case actionTypes.SET_CURRENT_PAGE:
+        case tionTypes.SET_CURRENT_PAGE:
             return {
-                ...state, currentPage: action.currentPage
+                ...state, currentPage: tion.currentPage
             }
-        case actionTypes.SET_TOTAL_USERS_COUNT:
+        case tionTypes.SET_TOTAL_USERS_COUNT:
         return {
             ...state, totalUsersCount: 300
         }
-        case actionTypes.TOGGLE_IS_FETCHING:
+        case tionTypes.TOGGLE_IS_FETCHING:
             return {
-                ...state, isFetching: action.isFetching
+                ...state, isFetching: tion.isFetching
             }
         default:
             return state;
     }
 }
 
-export const followAC = (userId) => {
+export const follow = (userId) => {
     return {
-        type: actionTypes.FOLLOW,
+        type: tionTypes.FOLLOW,
         userId
     };
 }
 
-export const unFollowAC = (userId) => {
+export const unfollow = (userId) => {
     return {
-        type: actionTypes.UNFOLLOW,
+        type: tionTypes.UNFOLLOW,
         userId
     }
 }
 
-export const setUsersAC = (users) => {
+export const setUsers = (users) => {
      return {
-         type: actionTypes.SET_USERS,
+         type: tionTypes.SET_USERS,
          users
      }
 }
 
-export const setCurrentPageAC = (currentPage) => {
+export const setCurrentPage = (currentPage) => {
     return {
-        type: actionTypes.SET_CURRENT_PAGE,
+        type: tionTypes.SET_CURRENT_PAGE,
         currentPage
     }
 }
 
-export const setTotalUsersCountAC = (count) => {
+export const setTotalUsersCount = (count) => {
     return {
-        type: actionTypes.SET_TOTAL_USERS_COUNT,
+        type: tionTypes.SET_TOTAL_USERS_COUNT,
         totalUsersCount: count
     }
 }
 
-export const toggleIsFetchingAC = (isFetching) => {
+export const toggleIsFetching = (isFetching) => {
     return {
-        type: actionTypes.TOGGLE_IS_FETCHING,
+        type: tionTypes.TOGGLE_IS_FETCHING,
         isFetching: isFetching
     }
 }
