@@ -5,3 +5,11 @@
 .descriptionBlock {
     padding: 10px;
 }
+
+.boxImg {
+    width: 100px;
+}
+
+.boxImg img {
+    width: 100%;
+}

@@ -1,4 +1,4 @@
-const tionTypes = {
+const actionTypes = {
     FOLLOW: 'FOLLOW',
     UNFOLLOW: 'UNFOLLOW',
     SET_USERS: 'SET_USERS',
@@ -16,45 +16,45 @@ let initialState = {
     isFetching: true
 };
 
-const usersReducer = (state = initialState, tion) => {
+const usersReducer = (state = initialState, action) => {
 
-    switch (tion.type) {
-        case tionTypes.FOLLOW:
+    switch (action.type) {
+        case actionTypes.FOLLOW:
             return {
                 ...state,
                 users: state.users.map((u) => {
-                    if (u.id === tion.userId) {
+                    if (u.id === action.userId) {
                         return {...u, followed: true}
                     }
                     return u;
                 })
             }
-        case tionTypes.UNFOLLOW:
+        case actionTypes.UNFOLLOW:
             return {
                 ...state,
                 users: state.users.map((u) => {
-                    if (u.id === tion.userId) {
+                    if (u.id === action.userId) {
                         return {...u, followed: false}
                     }
                     return u;
                 })
             }
-        case tionTypes.SET_USERS:
+        case actionTypes.SET_USERS:
             return {
                 ...state,
-                users: [...tion.users]
+                users: [...action.users]
             }
-        case tionTypes.SET_CURRENT_PAGE:
+        case actionTypes.SET_CURRENT_PAGE:
             return {
-                ...state, currentPage: tion.currentPage
+                ...state, currentPage: action.currentPage
             }
-        case tionTypes.SET_TOTAL_USERS_COUNT:
+        case actionTypes.SET_TOTAL_USERS_COUNT:
         return {
             ...state, totalUsersCount: 300
         }
-        case tionTypes.TOGGLE_IS_FETCHING:
+        case actionTypes.TOGGLE_IS_FETCHING:
             return {
-                ...state, isFetching: tion.isFetching
+                ...state, isFetching: action.isFetching
             }
         default:
             return state;
@@ -63,42 +63,42 @@ const usersReducer = (state = initialState, tion) => {
 
 export const follow = (userId) => {
     return {
-        type: tionTypes.FOLLOW,
+        type: actionTypes.FOLLOW,
         userId
     };
 }
 
 export const unfollow = (userId) => {
     return {
-        type: tionTypes.UNFOLLOW,
+        type: actionTypes.UNFOLLOW,
         userId
     }
 }
 
 export const setUsers = (users) => {
      return {
-         type: tionTypes.SET_USERS,
+         type: actionTypes.SET_USERS,
          users
      }
 }
 
 export const setCurrentPage = (currentPage) => {
     return {
-        type: tionTypes.SET_CURRENT_PAGE,
+        type: actionTypes.SET_CURRENT_PAGE,
         currentPage
     }
 }
 
 export const setTotalUsersCount = (count) => {
     return {
-        type: tionTypes.SET_TOTAL_USERS_COUNT,
+        type: actionTypes.SET_TOTAL_USERS_COUNT,
         totalUsersCount: count
     }
 }
 
 export const toggleIsFetching = (isFetching) => {
     return {
-        type: tionTypes.TOGGLE_IS_FETCHING,
+        type: actionTypes.TOGGLE_IS_FETCHING,
         isFetching: isFetching
     }
 }

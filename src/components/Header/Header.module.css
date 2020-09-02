@@ -7,3 +7,12 @@
     width: 50px;
 }
 
+.blockLogin {
+    float: right;
+    color: white;
+
+}
+
+.blockLogin a {
+    color: white;
+}
