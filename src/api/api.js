@@ -42,7 +42,7 @@ export const profileApi = {
 }
 
 export const authApi = {
-    getIAuthMe() {
+    me() {
         return myAxios
             .get(`auth/me`)
             .then((response) => {
