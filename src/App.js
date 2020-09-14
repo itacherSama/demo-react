@@ -20,9 +20,11 @@ const App = (props) => {
                 <HeaderContainer />
                 <NavbarContainer />
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs' 
+                    <Route path='/dialogs'
                             render={() => <DialogsContainer />} />
-                    <Route path='/profile/:userId'
+                    <Route path='/profile'
+                           render={() => <ProfileContainer />} />
+                    <Route exact path='/profile/:userId'
                             render={() => <ProfileContainer />} />
                     <Route path='/users'
                             render={() => <UsersContainer />} />

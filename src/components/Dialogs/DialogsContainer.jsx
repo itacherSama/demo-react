@@ -1,5 +1,4 @@
-import React from 'react';
-import { setAddMessage, setUpdateMessage } from '../../redux/reducers/dialogs-reducer';
+import { setAddMessage } from '../../redux/reducers/dialogs-reducer';
 import Dialogs from './Dialogs';
 import { connect } from 'react-redux';
 import {compose} from "redux";
@@ -12,13 +11,11 @@ let mapStateToProps = (state) => {
     return {
         dialogs: dialogsPage.dialogs,
         messages: dialogsPage.messages,
-        newTextForMessage: dialogsPage.newTextForMessage
     }
 }
 
 let mapDispatchToProps = {
-    setAddMessage,
-    setUpdateMessage
+    setAddMessage
 }
 
 export default compose(

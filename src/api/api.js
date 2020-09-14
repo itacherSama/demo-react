@@ -38,6 +38,18 @@ export const profileApi = {
             .then((response) => {
             return response.data;
         });
+    },
+    getUserStatus(userId) {
+        return myAxios
+            .get(`profile/status/${userId}`).then((response) => {
+                return response.data;
+            });
+    },
+    updateUserStatus(status) {
+        return myAxios
+            .put(`profile/status`,{status}).then((response) => {
+                return response.data;
+            });
     }
 }
 

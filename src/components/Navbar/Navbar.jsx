@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 let Navbar = (props) => {
     let linksItems = props.sidebar.links.map((link) => {
         return (
-            <div>
+            <div key={link.name}>
                 <NavLink
                     to={link.path}
                     className={s.item}
