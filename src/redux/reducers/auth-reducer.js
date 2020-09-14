@@ -16,21 +16,21 @@ const authReducer = (state = initialState, action) => {
         case actionTypes.SET_AUTH_USER:
             return {
                 ...state,
-                ...action.profile,
-                isAuth: true
+                ...action.payload
             }
         default:
             return state;
     }
 }
 
-export const setAuthUser = (userId, login, email) => {
+export const setAuthUser = (userId, login, email, isAuth) => {
     return {
         type: actionTypes.SET_AUTH_USER,
-        profile: {
+        payload: {
             userId,
             login,
-            email
+            email,
+            isAuth
         }
     }
 }

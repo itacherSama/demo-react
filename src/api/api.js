@@ -4,7 +4,7 @@ const myAxios = Axios.create({
     withCredentials: true,
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     headers: {
-        'API-KEY': '222e1797-048d-4167-a8a3-fcdcb43ded32'
+        'API-KEY': 'c83e6aa8-dbfa-49be-b7d3-7b2a90eeee34'
     }
 
 });
@@ -60,5 +60,19 @@ export const authApi = {
             .then((response) => {
             return response.data;
         });
+    },
+    login(email, password, rememberMe = false) {
+        return myAxios
+            .post(`auth/login`, {email, password, rememberMe})
+            .then((response) => {
+                return response.data;
+            });
+    },
+    logout() {
+        return myAxios
+            .delete(`auth/login`)
+            .then((response) => {
+                return response.data;
+            });
     }
 }
