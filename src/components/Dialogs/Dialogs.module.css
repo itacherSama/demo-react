@@ -10,16 +10,14 @@
 
 .dialog_link {
     text-decoration: none;
-    color: white;
 }
 
 .dialog_link.active {
-    color: gold;
+        color: gold;
 }
 
 .dialogsItems {
     padding: 10px;
-    color: white;
 }
 
 .dialogsIitems .active {
@@ -32,5 +30,4 @@
 }
 
 .message {
-    color: white;
 }

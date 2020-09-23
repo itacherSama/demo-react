@@ -3,8 +3,14 @@ import Users from './Users';
 import {connect} from 'react-redux';
 import Preloader from "../anotherComponents/Preloader/Preloader";
 import {follow, getUsers, unfollow} from "../../redux/reducers/thunks/users-thunks";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import {
+    getArrFollowingInProgress,
+    getCurrentPage,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount, requestUsers
+} from "../../redux/reducers/selectors/users-selectors";
 
 class UsersComponent extends React.Component {
 
@@ -29,7 +35,7 @@ class UsersComponent extends React.Component {
 }
 
 
-let mapStateToProps = (state) => {
+/*let mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
@@ -37,6 +43,17 @@ let mapStateToProps = (state) => {
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
         arrFollowingInProgress: state.usersPage.arrFollowingInProgress,
+    }
+}*/
+
+let mapStateToProps = (state) => {
+    return {
+        users: requestUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        arrFollowingInProgress: getArrFollowingInProgress(state),
     }
 }
 
@@ -48,5 +65,4 @@ let mapDispatchToProps = {
 
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
-    withAuthRedirect
 )(UsersComponent);

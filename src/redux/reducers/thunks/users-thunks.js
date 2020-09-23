@@ -45,13 +45,3 @@ export const unfollow = (userId) => (dispatch) => {
             }
         });
 }
-
-export const authMe = () => (dispatch) => {
-    authApi.me()
-        .then((response) => {
-            if (response.resultCode === 0) {
-                let {id, login, email} = response.data;
-                dispatch(setAuthUser(id, login, email));
-            }
-        });
-}

@@ -6,11 +6,6 @@ import {connect} from "react-redux";
 
 class HeaderContainer extends React.Component {
 
-    componentDidMount() {
-        this.props.getAuthUser();
-    }
-
-
     render() {
         return (
             <Header {...this.props}/>
@@ -26,7 +21,6 @@ let mapStateToProps = state => {
 }
 
 let mapDispatchToProps = {
-    getAuthUser,
     logout
 }
 
