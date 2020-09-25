@@ -2,25 +2,19 @@ import {profileApi} from "../../../api/api";
 import {setUserProfile, setUserStatus} from "../profile-reducer";
 
 
-export const getProfile = (userId) => (dispatch) => {
-    profileApi.getProfile(userId)
-        .then((response) => {
-            dispatch(setUserProfile(response));
-        });
+export const getProfile = (userId) => async (dispatch) => {
+    let response = await profileApi.getProfile(userId);
+    dispatch(setUserProfile(response));
 }
 
-export const getUserStatus = (userId) => (dispatch) => {
-    profileApi.getUserStatus(userId)
-        .then((response) => {
-            dispatch(setUserStatus(response));
-        });
+export const getUserStatus = (userId) => async (dispatch) => {
+    let response = await profileApi.getUserStatus(userId)
+    dispatch(setUserStatus(response));
 }
 
-export const updateUserStatus = (status) => (dispatch) => {
-    profileApi.updateUserStatus(status)
-        .then((response) => {
-            if (response.resultCode === 0) {
-                dispatch(setUserStatus(status));
-            }
-        });
+export const updateUserStatus = (status) => async (dispatch) => {
+    let response = await profileApi.updateUserStatus(status);
+    if (response.resultCode === 0) {
+        dispatch(setUserStatus(status));
+    }
 }

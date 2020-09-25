@@ -5,11 +5,10 @@ import Profile from "./Profile";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {compose} from "redux";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {getProfile, getUserStatus, updateUserStatus} from "../../redux/reducers/thunks/profile-thunks";
 
 
-class ProfileContainer extends React.Component {
+class StartPointApp extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId || this.props.autorizedAuthId;
         if (!userId) this.props.history.push('/login') ;
@@ -45,4 +44,4 @@ export default compose(
     withRouter,
     connect(mapStateToProps, mapDispatchToProps),
     // withAuthRedirect
-)(ProfileContainer);
+)(StartPointApp);

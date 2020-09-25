@@ -15,11 +15,14 @@ import {
 class UsersComponent extends React.Component {
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        const {currentPage, pageSize} = this.props;
+        this.props.getUsers(currentPage, pageSize);
     }
 
     onChangePage = (numberPage) => {
-        this.props.getUsers(numberPage, this.props.pageSize);
+        const {pageSize} = this.props;
+
+        this.props.getUsers(numberPage, pageSize);
     }
 
     render() {
@@ -33,18 +36,6 @@ class UsersComponent extends React.Component {
     }
 
 }
-
-
-/*let mapStateToProps = (state) => {
-    return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        arrFollowingInProgress: state.usersPage.arrFollowingInProgress,
-    }
-}*/
 
 let mapStateToProps = (state) => {
     return {

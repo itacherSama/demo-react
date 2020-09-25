@@ -1,4 +1,6 @@
-const actionTypes = {
+import {updateObjectInArray} from "../../utils/object-helpers";
+
+/*const actionTypes = {
     FOLLOW: 'FOLLOW',
     UNFOLLOW: 'UNFOLLOW',
     SET_USERS: 'SET_USERS',
@@ -6,7 +8,15 @@ const actionTypes = {
     SET_TOTAL_USERS_COUNT: 'SET_TOTAL_USERS_COUNT',
     TOGGLE_IS_FETCHING: 'TOGGLE_IS_FETCHING',
     FOLLOWING_IN_PROGRESS: 'FOLLOWING_IN_PROGRESS',
-}
+}*/
+
+    const FOLLOW = 'FOLLOW';
+    const UNFOLLOW = 'UNFOLLOW';
+    const SET_USERS = 'SET_USERS';
+    const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+    const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
+    const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+    const FOLLOWING_IN_PROGRESS = 'FOLLOWING_IN_PROGRESS';
 
 let initialState = {
     users: [],
@@ -20,44 +30,34 @@ let initialState = {
 const usersReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case actionTypes.FOLLOW:
+        case FOLLOW:
             return {
                 ...state,
-                users: state.users.map((u) => {
-                    if (u.id === action.userId) {
-                        return {...u, followed: true}
-                    }
-                    return u;
-                })
+                users: updateObjectInArray(state.users, action.userId, 'id', {followed: true})
             }
-        case actionTypes.UNFOLLOW:
+        case UNFOLLOW:
             return {
                 ...state,
-                users: state.users.map((u) => {
-                    if (u.id === action.userId) {
-                        return {...u, followed: false}
-                    }
-                    return u;
-                })
+                users: updateObjectInArray(state.users, action.userId, 'id', {followed: false})
             }
-        case actionTypes.SET_USERS:
+        case SET_USERS:
             return {
                 ...state,
                 users: [...action.users]
             }
-        case actionTypes.SET_CURRENT_PAGE:
+        case SET_CURRENT_PAGE:
             return {
                 ...state, currentPage: action.currentPage
             }
-        case actionTypes.SET_TOTAL_USERS_COUNT:
+        case SET_TOTAL_USERS_COUNT:
             return {
                 ...state, totalUsersCount: 300
             }
-        case actionTypes.TOGGLE_IS_FETCHING:
+        case TOGGLE_IS_FETCHING:
             return {
                 ...state, isFetching: action.isFetching
             }
-        case actionTypes.FOLLOWING_IN_PROGRESS:
+        case FOLLOWING_IN_PROGRESS:
             return {
                 ...state, arrFollowingInProgress: action.isFetching ?
                     [...state.arrFollowingInProgress, action.id] :
@@ -70,49 +70,49 @@ const usersReducer = (state = initialState, action) => {
 
 export const setFollow = (userId) => {
     return {
-        type: actionTypes.FOLLOW,
+        type: FOLLOW,
         userId
     };
 }
 
 export const setUnfollow = (userId) => {
     return {
-        type: actionTypes.UNFOLLOW,
+        type: UNFOLLOW,
         userId
     }
 }
 
 export const setUsers = (users) => {
     return {
-        type: actionTypes.SET_USERS,
+        type: SET_USERS,
         users
     }
 }
 
 export const setCurrentPage = (currentPage) => {
     return {
-        type: actionTypes.SET_CURRENT_PAGE,
+        type: SET_CURRENT_PAGE,
         currentPage
     }
 }
 
 export const setTotalUsersCount = (count) => {
     return {
-        type: actionTypes.SET_TOTAL_USERS_COUNT,
+        type: SET_TOTAL_USERS_COUNT,
         totalUsersCount: count
     }
 }
 
 export const setToggleIsFetching = (isFetching) => {
     return {
-        type: actionTypes.TOGGLE_IS_FETCHING,
+        type: TOGGLE_IS_FETCHING,
         isFetching: isFetching
     }
 }
 
 export const setFollowingInProgress = (isFetching, id) => {
     return {
-        type: actionTypes.FOLLOWING_IN_PROGRESS,
+        type: FOLLOWING_IN_PROGRESS,
         isFetching: isFetching,
         id: id
     }

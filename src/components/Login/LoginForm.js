@@ -1,40 +1,21 @@
-import {Field, reduxForm} from "redux-form";
-import {Input} from "../anotherComponents/FormsControls/FormsControls";
-import {maxLength, minLength, required} from "../../utils/validators/validators";
+import {reduxForm} from "redux-form";
+import {CreateField, Input} from "../anotherComponents/FormsControls/FormsControls";
+import { minLength, required} from "../../utils/validators/validators";
 import React from "react";
 import styles from '../anotherComponents/FormsControls/FormsControls.module.css';
 
-const maxLength30 = maxLength(30);
+
 const minLength5 = minLength(5);
 
-let LoginForm = (props) => {
-    return <form onSubmit={props.handleSubmit}>
-        <div>
-            <label htmlFor="login">Email</label>
-            <Field
-                name="email"
-                component={Input}
-                type="text"
-                validate={[required, maxLength30]}
-            />
-        </div>
-        <div>
-            <label htmlFor="password">Password</label>
-            <Field name="password"
-                   component={Input}
-                   type="password"
-                   validate={[required, minLength5]}
-            />
-        </div>
-        <div>
+let LoginForm = ({handleSubmit, error}) => {
+    return <form onSubmit={handleSubmit}>
 
-            <Field name="rememberMe"
-                   component={Input}
-                   type="checkbox"
-            /><label htmlFor="rememberMe">rememberMe</label>
-    </div>
-        {props.error && <div className={styles.errors}>
-            {props.error}
+        {CreateField('Email', 'email', [required], Input)}
+        {CreateField('Password', 'password', [required, minLength5], Input, {type: 'password'})}
+        {CreateField(null, 'rememberMe', [], Input, {type: 'checkbox'}, 'remember me')}
+
+        {error && <div className={styles.errors}>
+            {error}
         </div>}
         <button>Submit</button>
     </form>
