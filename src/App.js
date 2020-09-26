@@ -1,19 +1,20 @@
 import React from 'react';
-import './App.css';
-import NavbarContainer from './components/Navbar/NavbarContainer';
 import {Route} from 'react-router-dom';
-import News from './components/News/News';
-import Music from './components/Music/Music';
-import Settings from './components/Settings/Settings';
+import {withSuspence} from "./hoc/withSuspence";
+import Preloader from "./components/anotherComponents/Preloader/Preloader";
+
+import NavbarContainer from './components/Navbar/NavbarContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
-import Preloader from "./components/anotherComponents/Preloader/Preloader";
-import {withSuspence} from "./hoc/withSuspence";
+import './App.css';
 
 // lazy Components
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
+const News = React.lazy(() => import('./components/News/News'));
+const Music = React.lazy(() => import('./components/Music/Music'));
+const Settings = React.lazy(() => import('./components/Settings/Settings'));
 
 
 class App extends React.Component {
@@ -36,9 +37,9 @@ class App extends React.Component {
                            render={withSuspence(ProfileContainer)}/>
                     <Route path='/users'
                            render={() => <UsersContainer/>}/>
-                    <Route path='/news' component={News}/>
-                    <Route path='/music' component={Music}/>
-                    <Route path='/settings' component={Settings}/>
+                    <Route path='/news' render={withSuspence(News)}/>
+                    <Route path='/music' render={withSuspence(Music)}/>
+                    <Route path='/settings' render={withSuspence(Settings)}/>
                     <Route path='/login' component={Login}/>
 
                 </div>
