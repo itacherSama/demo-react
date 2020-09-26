@@ -8,7 +8,7 @@ import {compose} from "redux";
 import {getProfile, getUserStatus, updateUserStatus} from "../../redux/reducers/thunks/profile-thunks";
 
 
-class StartPointApp extends React.Component {
+class ProfileContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId || this.props.autorizedAuthId;
         if (!userId) this.props.history.push('/login') ;
@@ -44,4 +44,4 @@ export default compose(
     withRouter,
     connect(mapStateToProps, mapDispatchToProps),
     // withAuthRedirect
-)(StartPointApp);
+)(ProfileContainer);
