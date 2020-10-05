@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Header from "./Header";
 import {logout} from "../../redux/reducers/thunks/auth-thunks";

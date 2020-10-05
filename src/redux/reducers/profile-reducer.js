@@ -1,9 +1,8 @@
-const actionTypes = {
-    SET_ADD_POST: 'SET_ADD_POST',
-    SET_USER_PROFILE: 'SET_USER_PROFILE',
-    SET_USER_STATUS: 'SET_USER_STATUS',
+const SET_ADD_POST = 'profile/SET_ADD_POST';
+const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
+const SET_USER_STATUS = 'profile/SET_USER_STATUS';
+const SET_PHOTO_PROFILE = 'profile/SET_PHOTO_PROFILE';
 
-}
 
 let initialState = {
     posts: [
@@ -19,7 +18,7 @@ let initialState = {
 const profileReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case actionTypes.SET_ADD_POST:
+        case SET_ADD_POST:
             let newPost = {
                 id: state.posts.length,
                 message: action.valueNewPost,
@@ -30,16 +29,25 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 posts: [...state.posts, newPost]
             };
-        case actionTypes.SET_USER_PROFILE:
+        case SET_USER_PROFILE:
             return {
                 ...state,
                 profile: action.profile
             };
 
-        case actionTypes.SET_USER_STATUS:
+        case SET_USER_STATUS:
             return {
                 ...state,
                 status: action.status
+            };
+        case SET_PHOTO_PROFILE:
+            return {
+                ...state,
+                profile: {
+                    ...state.profile,
+                    photos: action.photos
+                }
+
             };
         default:
             return state;
@@ -48,21 +56,28 @@ const profileReducer = (state = initialState, action) => {
 
 export let setAddPost = (valueNewPost) => {
     return {
-        type: actionTypes.SET_ADD_POST,
+        type: SET_ADD_POST,
         valueNewPost: valueNewPost
     };
 }
 
 export let setUserProfile = (profile) => {
     return {
-        type: actionTypes.SET_USER_PROFILE,
+        type: SET_USER_PROFILE,
         profile: profile
+    }
+}
+
+export let setPhotoProfile = (photos) => {
+    return {
+        type: SET_PHOTO_PROFILE,
+        photos: photos
     }
 }
 
 export let setUserStatus = (status) => {
     return {
-        type: actionTypes.SET_USER_STATUS,
+        type: SET_USER_STATUS,
         status: status
     }
 }

@@ -1,6 +1,4 @@
-const actionTypes = {
-    'SET_ADD_MESSAGE': 'SET_ADD_MESSAGE'
-}
+const SET_ADD_MESSAGE = 'dialogs/SET_ADD_MESSAGE';
 
 let initialState = {
     messages: [
@@ -23,7 +21,7 @@ let initialState = {
 const dialogsReducer = (state = initialState, action) => {
     
     switch (action.type) {
-        case actionTypes.SET_ADD_MESSAGE:
+        case SET_ADD_MESSAGE:
             let newMessage = {
                 id: state.messages.length + 1,
                 message: action.message
@@ -41,7 +39,7 @@ const dialogsReducer = (state = initialState, action) => {
 
 export let setAddMessage = (valueMessage) => {
     return {
-        type: actionTypes.SET_ADD_MESSAGE,
+        type: SET_ADD_MESSAGE,
         message: valueMessage
     }
 }

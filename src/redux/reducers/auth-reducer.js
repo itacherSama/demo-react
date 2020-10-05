@@ -1,19 +1,19 @@
-const actionTypes = {
-    'SET_AUTH_USER': 'SET_AUTH_USER',
-    TOGGLE_IS_FETCHING: 'TOGGLE_IS_FETCHING',
-}
+const SET_AUTH_USER = 'auth/SET_AUTH_USER';
+const GET_CAPTCHA_URL_SUCCESS = 'auth/GET_CAPTCHA_URL_SUCCESS';
 
 let initialState = {
     userId: null,
     email: null,
     login: null,
-    isAuth: false
+    isAuth: false,
+    captchaUrl: null
 };
 
 const authReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case actionTypes.SET_AUTH_USER:
+        case SET_AUTH_USER:
+        case GET_CAPTCHA_URL_SUCCESS:
             return {
                 ...state,
                 ...action.payload
@@ -25,12 +25,21 @@ const authReducer = (state = initialState, action) => {
 
 export const setAuthUser = (userId, login, email, isAuth) => {
     return {
-        type: actionTypes.SET_AUTH_USER,
+        type: SET_AUTH_USER,
         payload: {
             userId,
             login,
             email,
             isAuth
+        }
+    }
+}
+
+export const setCaptchaUrlSuccess = (captchaUrl) => {
+    return {
+        type: SET_AUTH_USER,
+        payload: {
+            captchaUrl
         }
     }
 }

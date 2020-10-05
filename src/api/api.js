@@ -50,7 +50,27 @@ export const profileApi = {
             .put(`profile/status`,{status}).then((response) => {
                 return response.data;
             });
+    },
+    savePhoto(photoFile) {
+        let formData = new FormData();
+        formData.append('image', photoFile);
+        return myAxios
+            .put(`profile/photo`, formData, {
+                headers: {
+                    'Content-type': 'multipart/form-data'
+                }
+            }).then((response) => {
+                return response.data;
+            });
+    },
+    saveProfile(profile) {
+        return myAxios
+            .put(`profile`, profile).then((response) => {
+                return response.data;
+            });
     }
+
+
 }
 
 export const authApi = {
@@ -61,9 +81,9 @@ export const authApi = {
             return response.data;
         });
     },
-    login(email, password, rememberMe = false) {
+    login(dataAuth) {
         return myAxios
-            .post(`auth/login`, {email, password, rememberMe})
+            .post(`auth/login`, dataAuth)
             .then((response) => {
                 return response.data;
             });
@@ -74,5 +94,11 @@ export const authApi = {
             .then((response) => {
                 return response.data;
             });
+    }
+}
+
+export const securityApi = {
+    getCaptchaUrl() {
+        return myAxios.get(`/security/get-captcha-url`);
     }
 }

@@ -1,14 +1,19 @@
-
 import React from 'react';
-import LoginForm from "./LoginForm";
-import {login} from "../../redux/reducers/thunks/auth-thunks";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
+import LoginForm from "./LoginForm";
+import {login} from "../../redux/reducers/thunks/auth-thunks";
+
 
 class Login extends React.Component {
 
     onSendLogin = FormValue => {
-            this.props.login(FormValue.email, FormValue.password, FormValue.rememberMe);
+        const dataAuth = {
+            email: FormValue.email,
+            password: FormValue.password,
+            rememberMe: FormValue.rememberMe || false,
+            captcha: FormValue.captcha || null};
+        this.props.login(dataAuth);
     }
 
     render() {
@@ -18,14 +23,15 @@ class Login extends React.Component {
         return (
             <div>
                 <div>Login page</div>
-                <LoginForm onSubmit={this.onSendLogin}/>
+                <LoginForm onSubmit={this.onSendLogin} captchaUrl={this.props.captchaUrl}/>
             </div>
         )
     }
 }
 
 const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    captchaUrl: state.auth.captchaUrl
 });
 
 export default connect(mapStateToProps, {login})(Login);

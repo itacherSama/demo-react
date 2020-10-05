@@ -1,22 +1,12 @@
 import {updateObjectInArray} from "../../utils/object-helpers";
 
-/*const actionTypes = {
-    FOLLOW: 'FOLLOW',
-    UNFOLLOW: 'UNFOLLOW',
-    SET_USERS: 'SET_USERS',
-    SET_CURRENT_PAGE: 'SET_CURRENT_PAGE',
-    SET_TOTAL_USERS_COUNT: 'SET_TOTAL_USERS_COUNT',
-    TOGGLE_IS_FETCHING: 'TOGGLE_IS_FETCHING',
-    FOLLOWING_IN_PROGRESS: 'FOLLOWING_IN_PROGRESS',
-}*/
-
-    const FOLLOW = 'FOLLOW';
-    const UNFOLLOW = 'UNFOLLOW';
-    const SET_USERS = 'SET_USERS';
-    const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
-    const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
-    const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
-    const FOLLOWING_IN_PROGRESS = 'FOLLOWING_IN_PROGRESS';
+    const FOLLOW = 'users/FOLLOW';
+    const UNFOLLOW = 'users/UNFOLLOW';
+    const SET_USERS = 'users/SET_USERS';
+    const SET_CURRENT_PAGE = 'users/SET_CURRENT_PAGE';
+    const SET_TOTAL_USERS_COUNT = 'users/SET_TOTAL_USERS_COUNT';
+    const TOGGLE_IS_FETCHING = 'users/TOGGLE_IS_FETCHING';
+    const FOLLOWING_IN_PROGRESS = 'users/FOLLOWING_IN_PROGRESS';
 
 let initialState = {
     users: [],
